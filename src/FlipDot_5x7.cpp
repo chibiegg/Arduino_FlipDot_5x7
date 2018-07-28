@@ -61,8 +61,12 @@ void FlipDot_5x7::drawPixel(int16_t x, int16_t y, uint16_t color) {
   imageBuffer[y*width()+x] = (color>0);
 }
 
-void FlipDot_5x7::setPixelDelay(uint8_t pixelDelay) {
+void FlipDot_5x7::setPixelDelay(uint16_t pixelDelay) {
   _pixelDelay = pixelDelay;
+}
+
+void FlipDot_5x7::setPulseWidth(uint16_t pulseWidth) {
+  _pulseWidth = pulseWidth;
 }
 
 void FlipDot_5x7::setRtl(boolean rtl) {
@@ -91,7 +95,7 @@ void FlipDot_5x7::display(void) {
         }
       }
       digitalWrite(_latch, HIGH);
-      delayMicroseconds(FLIPDOT_PULSE_DURATION);
+      delayMicroseconds(_pulseWidth);
       digitalWrite(_latch, LOW);
       delay(_pixelDelay);
     }
