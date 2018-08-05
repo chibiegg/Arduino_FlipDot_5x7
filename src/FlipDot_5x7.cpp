@@ -83,10 +83,9 @@ void FlipDot_5x7::display(void) {
     for (uint8_t y = 0; y < FLIPDOT_MODULE_HEIGHT; y++) {
       //uint8_t dnc = 0;
       for (int8_t yModule = _yModules-1; yModule > -1; yModule--) {
-        for (int8_t xModule = (yModule%2 != _rtl)?(_xModules-1):0;
-          ((yModule%2 != _rtl)?-1:xModule) < ((yModule%2 != _rtl)?xModule:_xModules);
-          xModule += (yModule%2 != _rtl)?-1:1) {
-
+        for (int8_t xModule = (_rtl)?(_xModules-1):0;
+          ((_rtl)?-1:xModule) < ((_rtl)?xModule:_xModules);
+          xModule += (_rtl?-1:1)) {
           uint8_t _x = (_xModules - xModule-1) * FLIPDOT_MODULE_WIDTH+x;
           uint8_t _y = yModule * FLIPDOT_MODULE_HEIGHT+y;
           //if (oldImageBuffer[y*width()+x] == imageBuffer[y*width()+x]) dnc++;
